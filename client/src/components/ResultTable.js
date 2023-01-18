@@ -3,13 +3,15 @@ import { getServerData } from '../helper/helper'
 
 export default function ResultTable() {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         getServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/result`, (res) => {
-            setData(res)
-        })
-    })
+            setData(res);
+        });
+        setIsLoaded(true);
+    }, [isLoaded]);
 
   return (
     <div>
