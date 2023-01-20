@@ -12,8 +12,10 @@ export default function Quiz() {
 
     const [check, setChecked] = useState(undefined)
 
+    // useSelector is use for accessing the current state,
     const result = useSelector(state => state.result.result);
     const { queue, trace } = useSelector(state => state.questions);
+
     const dispatch = useDispatch()
 
     /** next button event handler */

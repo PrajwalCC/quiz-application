@@ -23,6 +23,7 @@ export const useFetchQestion = () => {
                     setGetData(prev => ({...prev, apiData : questions}));
 
                     /** dispatch an action */
+                    // specify the values to the store
                     dispatch(Action.startExamAction({ question : questions, answers }))
 
                 } else{
