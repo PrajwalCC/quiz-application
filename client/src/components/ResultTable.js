@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { getServerData } from '../helper/helper'
+import { getServerData, deleteServerData } from '../helper/helper'
+import { Link } from 'react-router-dom';
+import '../styles/Result.css';
+
+import { useDispatch} from 'react-redux';
+import { resetAllAction } from '../redux/question_reducer';
+import { resetResultAction } from '../redux/result_reducer';
 
 export default function ResultTable() {
 
@@ -12,6 +18,16 @@ export default function ResultTable() {
         });
         setIsLoaded(true);
     }, [isLoaded]);
+
+    const dispatch = useDispatch()
+    // deleting the result table
+    function deleteResult(){
+        deleteServerData(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/result`, (res) => {
+            setData(res);
+        });
+        dispatch(resetAllAction())// after deleting the result data we refreshing the all action, setting trace = 0 becoz we have to start quiz again
+        dispatch(resetResultAction()) // deleting the prev user id, user's result array
+    }
 
   return (
     <div>
@@ -39,6 +55,9 @@ export default function ResultTable() {
                 
             </tbody>
         </table>
+        <div className="start">
+            <Link className='btn' to={'/'} onClick={deleteResult}>Delete result Table</Link>
+        </div>
     </div>
   )
 }
