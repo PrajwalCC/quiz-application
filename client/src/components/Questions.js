@@ -37,7 +37,7 @@ export default function Questions({ onChecked }) {
 
         <ul key={questions?.id}>
             {
-                questions?.options.map((q, i) => (
+                questions?.options.map((q, i) => (  
                     <li key={i}>
                         <input 
                             type="radio"

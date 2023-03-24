@@ -10,7 +10,6 @@ import connect from './database/conn.js';
 
 const app = express()
 
-
 /** app middlewares */
 app.use(morgan('tiny'));
 app.use(cors());
