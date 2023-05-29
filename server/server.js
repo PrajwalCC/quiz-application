@@ -12,9 +12,23 @@ const app = express()
 
 /** app middlewares */
 app.use(morgan('tiny'));
-app.use(cors());
 app.use(express.json());
 config();
+app.use(
+cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    credentials: true,
+})
+);
+app.options(
+"*",
+cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    credentials: true,
+})
+);
 
 
 /** appliation port */
